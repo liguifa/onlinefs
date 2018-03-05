@@ -1,0 +1,37 @@
+onlinefs-title h1{
+    margin: 2px 0px;
+    color: #555555;
+    letter-spacing:5px;
+}
+
+.onlinefs-crumbs{
+    background: #ffffff;
+    height: 38px;
+    width: 100%;
+}
+
+.onlinefs-crumbs ul{
+    list-style: none;
+    padding: 0px;
+    margin:0px;
+}
+
+.onlinefs-crumbs ul li{
+    float: left;
+    height: 24px;
+}
+
+.onlinefs-crumbs ul li a,.onlinefs-crumbs ul li span{
+    color:#555555;
+    font-size: 20px;
+    line-height: 38px;
+    text-decoration: none;
+    margin: 0px 5px;
+}
+
+.oninefs-filter{
+    margin: 15px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

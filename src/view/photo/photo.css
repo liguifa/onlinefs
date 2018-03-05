@@ -1,0 +1,48 @@
+onlinefs-photo{
+    width: 100%;
+    height: 100%;
+    padding: 15px 20px;
+}
+onlinefs-photo div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 32px;
+    position: relative;
+}
+
+onlinefs-photo div button{
+    width: 100px;
+    height: 30px;
+    border:solid 1px #d4d4d4;
+    border-left: none;
+    flex-grow: 0;
+    box-sizing: border-box;
+    background: #F2F2F2;
+    outline: none;
+}
+
+onlinefs-photo div input{
+    flex-grow: 1;
+    height: 30px;
+    border:solid 1px #d4d4d4;
+    box-sizing: border-box;
+    padding: 2px 10px;
+}
+
+onlinefs-photo div input:last-child{
+    position: absolute;
+    right: 0px;
+    top:0px;
+    height: 30px;
+    width: 100px;
+    opacity: 0;
+}
+
+onlinefs-photo img{
+    height: 220px;
+    width: 220px;
+    margin: auto;
+    margin-top: 15px;
+    display: block;
+}

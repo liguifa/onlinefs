@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Test</h1>
+    <form action='/changePhoto' method="post" target="iframe">
+        <input type="text" name="name" />
+        <input type="number" name="age" />
+        <input type="submit" value="提交" />
+    </form>
+    <iframe name="iframe"></iframe>
+    <input type="file" name="fff" id="test" />
+    <button onclick="test()">test </button>
+</body>
+
+</html>
+<script>
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("post", "/changPhoto", true);
+    // xhr.send(JSON.stringify({ name: "haha" }));
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState === 4 && xhr.status === 200) {
+    //         func(JSON.parse(xhr.response));
+    //     }
+    // }
+    function test() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", "/changPhoto", true);
+        var formData = new FormData();
+        formData.append("name", "haha");
+        formData.append("age", 24);
+        formData.append("file", document.getElementById("test").files[0]);
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                func(JSON.parse(xhr.response));
+            }
+        }
+    }
+</script>

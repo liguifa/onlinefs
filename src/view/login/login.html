@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OnlineFS - 登录</title>
+    <link href="/common/messager.css" rel="stylesheet" />
+    <link href="/common/component.css" rel="stylesheet" />
+    <link href="login.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="onlinefs-login">
+        <div class="onlinefs-login-nav">
+            <div>
+                <img src="./images/logo.png" />
+                <span>OnlineFS</span>
+            </div>
+            <span>登录</span>
+        </div>
+        <div class="onlinefs-login-contenxt">
+            <div>
+                <div>
+                    <div>
+                        <img src="./images/login-file-pdf.png" />
+                    </div>
+                    <div>
+                        <img src="./images/login-file-word.png" />
+                    </div>
+                    <div>
+                        <img src="./images/login-file-excel.png" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <img src="./images/login-file-mp4.png" />
+                    </div>
+                    <div>
+                        <img class="onlinefs-login-index" src="./images/login-file-index.png" />
+                    </div>
+                    <div>
+                        <img src="./images/login-file-mp3.png" />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <img src="./images/login-file-psd.png" />
+                    </div>
+                    <div>
+                        <img src="./images/login-file-zip.png" />
+                    </div>
+                    <div>
+                        <img src="./images/login-file-tif.png" />
+                    </div>
+                </div>
+            </div>
+            <div>
+                <form id="onlinefs-login-form" class="onlinefs-login-content-form">
+                    <span class="onlinefs-login-content-form-title">登&nbsp;&nbsp;录</span>
+                    <span class="onlinefs-login-content-form-error">登录失败,账号或密码错误</span>
+                    <div>
+                        <label>账号:</label>
+                        <input type="text" id="username" placeholder="username" required />
+                    </div>
+                    <div>
+                        <label>密码:</label>
+                        <input type="password" id="password" placeholder="password" required />
+                    </div>
+                    <div>
+                        <onlinefs-checkbox id="remember"></onlinefs-checkbox>
+                        <label>记住我</label>
+                    </div>
+                    <div>
+                        <input class="onlinefs-login-content-form-submit" type="submit" value="" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <onlinefs-loading id="loading"></onlinefs-loading>
+</body>
+
+</html>
+<script src="/common/lib/base64.js"></script>
+<script src="/common/common.js"></script>
+<script src="/common/component.js"></script>
+<script src="/common/messager.js"></script>
+<script src="./login.js"></script>

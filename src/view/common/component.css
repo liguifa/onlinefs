@@ -1,0 +1,204 @@
+onlinefs-checkbox{
+    height: 14px;
+    float: left;
+    margin-top: 3px;
+}
+
+onlinefs-checkbox div{
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border:1px solid #d4d4d4;
+    display: inline-block;
+    text-align: center;
+}
+
+onlinefs-checkbox span{
+    height: 16px;
+    width: 16px;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: -6px;
+}
+
+onlinefs-loading div{
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.4;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    z-index: 10000;
+}
+
+onlinefs-loading img{
+    user-select: none;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    bottom: 0px;
+    right:0px;
+    margin: auto;
+    z-index: 10001;
+}
+
+onlinefs-silder-list > div{
+    height: 40px;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background: #2B2E37;
+    line-height: 40px;
+    color:#ffffff;
+    text-indent: 28px;
+    user-select: none;
+}
+
+onlinefs-silder-list > div > img{
+    float: right;
+    margin-top:8px;
+    margin-right: 28px;
+    cursor: pointer;
+}
+
+onlinefs-silder-list > ul{
+    list-style: none;
+    margin:0px;
+    padding: 0px;
+    /* display: none; */
+    overflow: hidden;
+}
+
+onlinefs-silder-list > ul li{
+    height: 40px;
+    line-height: 40px;
+    color:#c2c2c2;
+    cursor: pointer;
+    padding-left: 23px;
+    border-left: 5px solid #393D49;
+}
+
+onlinefs-silder-list > ul li:hover{
+    border-left: 5px solid #19A094;
+}
+
+onlinefs-silder-list > ul li.active{
+    background: #5FB878;
+    border-left: 5px solid #5FB878;
+    color:#ffffff;
+}
+
+.onlinefs-datagrid{
+    background: #ffffff;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.onlinefs-datagrid td,.onlinefs-datagrid th{
+    border:1px solid #E2E2E2;
+    text-align: left;
+    padding: 0px 10px;
+    height: 38px;
+}
+.onlinefs-datagrid th{
+    background: #F2F2F2;
+    cursor: default;
+}
+
+.onlinefs-datagrid-isSort{
+    cursor: pointer !important;
+}
+
+.onlinefs-datagrid-sort-img{
+    height: 10px;
+    width: 16px;
+    margin-top:8px;
+    float: right;
+}
+
+.onlinefs-droplist{
+    width: 300px;
+    height: 36px;
+    background: #ffffff;
+    position: relative;
+}
+
+.onlinefs-droplist > div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.onlinefs-droplist input{
+    border:none;
+    height: 100%;
+    flex-grow: 1; 
+    box-sizing: border-box;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.onlinefs-droplist > div > div{
+    width: 43px;
+    height: 100%;
+    flex-grow: 0;
+    background: #4A8BC2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.onlinefs-droplist ul{
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    max-height: 320px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.onlinefs-droplist ul li{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.onlinefs-droplist ul li:hover{
+    background: #19A094;
+    color: #ffffff;
+}
+
+.onlinefs-search{
+    width: 300px;
+    height: 36px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+}
+
+.onlinefs-search input{
+    border:none;
+    height: 100%;
+    flex-grow: 1; 
+    box-sizing: border-box;
+    font-size: 18px;
+    padding-left: 10px;
+    outline: none;
+}
+
+.onlinefs-search > div{
+    width: 43px;
+    height: 100%;
+    flex-grow: 0;
+    background: #4A8BC2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

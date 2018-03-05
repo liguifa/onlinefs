@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Onlinefs - 首页</title>
+    <link href="/common/common.css" rel="stylesheet" />
+    <link href="/common/messager.css" rel="stylesheet" />
+    <link href="/common/component.css" rel="stylesheet" />
+    <link href="/index/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="onlinefs-index">
+        <div class="onlinefs-index-nav">
+            <div>
+                <img src="/index/images/logo.png" />
+                <span>OnlineFS</span>
+            </div>
+            <span>首页</span>
+            <ul>
+                <li>
+                    <img src='/index/images/index-setting.png' />
+                </li>
+                <li>
+                    <img src='/index/images/index-about.png' />
+                </li>
+                <li id='onlinefs-index-user'>
+                    <span id='onlinefs-index-user-displayname'></span>
+                    <img id='onlinefs-index-user-photo' src='/index/images/index-default-photo.png' />
+                </li>
+            </ul>
+        </div>
+        <div class="onlinefs-index-content">
+            <div class="onlinefs-index-silder">
+                <div>
+                    <onlinefs-silder-list id="folder" title="文件夹" type="folder" url="/getShortcuts"></onlinefs-silder-list>
+                    <onlinefs-silder-list id="disk" title="磁盘" type="disk" url="/getDisks" isDefault="true"></onlinefs-silder-list>
+                    <onlinefs-silder-list id="other" title="其它" type="other" url="/getOtherNavs"></onlinefs-silder-list>
+                </div>
+                <div>
+                    版本所有 侵权必究
+                </div>
+            </div>
+            <div class="onlinefs-index-panel">
+                <onlinesfs-page></onlinesfs-page>
+            </div>
+        </div>
+    </div>
+    <onlinefs-loading id='loading'></onlinefs-loading>
+</body>
+
+</html>
+<script src="/common/common.js"></script>
+<script src="/common/component.js"></script>
+<script src="/common/messager.js"></script>
+<script src="/index/index.js"></script>

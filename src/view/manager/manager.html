@@ -1,0 +1,38 @@
+<onlinefs-title id="title"></onlinefs-title>
+<onlinefs-crumbs id="crumbs"></onlinefs-crumbs>
+<onlinefs-tabs></onlinefs-tabs>
+<div class="oninefs-filter">
+    <onlinefs-droplist></onlinefs-droplist>
+    <onlinefs-search id="search" search='fileSearch'></onlinefs-search>
+</div>
+<onlinefs-datagrid id="files" sort="fileSort" isIndex="true" columns='[{
+        "title":"文件名",
+        "width":32,
+        "isSort":true
+    },{
+        "title":"大小",
+        "width":10,
+        "isSort":true
+    },{
+        "title":"类型",
+        "width":10,
+        "isSort":true
+    },{
+        "title":"版本",
+        "width":8,
+        "isSort":true
+    },{
+        "title":"修改者",
+        "width":10,
+        "isSort":true
+    },{
+        "title":"修改时间",
+        "width":15,
+        "isSort":true
+    },{
+        "title":"操作",
+        "width":15,
+        "isSort":false
+    }]'>
+</onlinefs-datagrid>
+<link href="/manager/manager.css" rel="stylesheet" />
