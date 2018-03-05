@@ -2,37 +2,34 @@
 <onlinefs-crumbs id="crumbs"></onlinefs-crumbs>
 <onlinefs-tabs></onlinefs-tabs>
 <div class="oninefs-filter">
-    <onlinefs-droplist></onlinefs-droplist>
+    <onlinefs-droplist id="typeFilter" choose="filterFileType"></onlinefs-droplist>
     <onlinefs-search id="search" search='fileSearch'></onlinefs-search>
 </div>
-<onlinefs-datagrid id="files" sort="fileSort" isIndex="true" columns='[{
-        "title":"文件名",
-        "width":32,
-        "isSort":true
-    },{
-        "title":"大小",
-        "width":10,
-        "isSort":true
-    },{
-        "title":"类型",
-        "width":10,
-        "isSort":true
-    },{
-        "title":"版本",
-        "width":8,
-        "isSort":true
-    },{
-        "title":"修改者",
-        "width":10,
-        "isSort":true
-    },{
-        "title":"修改时间",
-        "width":15,
-        "isSort":true
-    },{
-        "title":"操作",
-        "width":15,
-        "isSort":false
-    }]'>
+<onlinefs-datagrid id="files" sort="fileSort" isIndex="true">
+    <slot title='文件名' width='32' isSort="true">
+        {{value}}
+    </slot>
+    <slot title='大小' width='10' isSort="true">
+        {{value}}
+    </slot>
+    <slot title='类型' width='10' isSort="true">
+        {{value}}
+    </slot>
+    <slot title='版本' width='8' isSort="true">
+        {{value}}
+    </slot>
+    <slot title='修改者' width='10' isSort="true">
+        {{value}}
+    </slot>
+    <slot title='修改时间' width='15' isSort="true">
+        {{value}}
+    </slot>
+    <slot title='操作' width='15' isSort="false">
+        {%for(var i in value){%}
+            {%if(value[i].isEnable)%}
+                <img src="/manager/images/manager-{{value[i].type}}.png" />
+            {%}%}
+        {%}%} 
+    </slot>
 </onlinefs-datagrid>
 <link href="/manager/manager.css" rel="stylesheet" />

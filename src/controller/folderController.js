@@ -64,24 +64,44 @@ module.exports = class folderController extends controller {
     }
 
     getFiles(vm) {
-        new folderService().getFilesAndSubFoldersByFolderId(vm.folderId, vm.sortType, parseInt(vm.isAsc), vm.searchKey).then(result => {
-            var files = result.map(item => {
-                item.version = item.type === 2 ? "" : `${item.version}.0`;
-                item.size = item.type === 2 ? "" : $.convert.toFileSize(item.size);
-                item.modifyTime = new Date(item.modifyTime).toLocaleString();
-                var filetype = item.fileType;
-                if (item.type === 1 && item.fileType === null) {
-                    var names = item.name.split(".");
-                    if (names.length > 1) {
-                        filetype = names[names.length - 1];
-                    } else {
-                        filetype = "文件";
+        (vm.type === "disk" ? new diskService().getSubFoldersById(vm.folderId, vm.sortType, parseInt(vm.isAsc), vm.searchKey) :
+            new folderService().getFilesAndSubFoldersByFolderId(vm.folderId, vm.sortType, parseInt(vm.isAsc), vm.searchKey))
+            .then(result => {
+                var files = result.map(item => {
+                    item.version = item.type === 2 ? "" : `${item.version}.0`;
+                    item.size = item.type === 2 ? "" : $.convert.toFileSize(item.size);
+                    item.modifyTime = new Date(item.modifyTime).toLocaleString();
+                    var filetype = item.fileType;
+                    if (item.type === 1 && item.fileType === null) {
+                        var names = item.name.split(".");
+                        if (names.length > 1) {
+                            filetype = names[names.length - 1];
+                        } else {
+                            filetype = "文件";
+                        }
                     }
-                }
-                item.fileType = filetype;
-                return item;
+                    item.fileType = filetype;
+                    item.actions = this._getActions(item);
+                    return item;
+                });
+                this.json(files);
             });
-            this.json(files);
+    }
+
+    _getActions(fileOrFolder) {
+        var actions = [];
+        //opne
+        var extname = "";
+        if (fileOrFolder.type === 1) {
+            var names = fileOrFolder.name.split(".");
+            extname = names.length > 1 ? names[names.length - 1] : "";
+        }
+        var openConfig = $.config.getOpenTypeConfig(extname);
+        actions.push({
+            type: "open",
+            isEnable: openConfig != undefined && openConfig != null,
+            config: openConfig
         });
+        return actions;
     }
 }

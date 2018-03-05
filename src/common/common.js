@@ -1,4 +1,5 @@
 const Base64 = require('js-base64').Base64;
+const oprnTypeConfig = require("../config/opentypeconfig");
 
 var $ = {};
 
@@ -31,4 +32,14 @@ $.convert = {
         return `${filesize} G`;
     }
 }
+
+$.config = {
+    getOpenTypeConfig: function (extname) {
+        var config = oprnTypeConfig.find(item => {
+            return item.extname === extname;
+        });
+        return config;
+    }
+}
+
 module.exports = $;

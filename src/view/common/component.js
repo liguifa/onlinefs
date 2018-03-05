@@ -4,7 +4,7 @@ $.component = (function () {
      */
     var template = (function () {
         return {
-            compile: function (template, data, attr, key) {
+            compile: function (template, data, attr, slots, key) {
                 var functionBody = template;
 
                 functionBody = functionBody.replace(/\$/g, key).replace(/'/g, "\"").replace(/{%(.*?)%}/g, function (match, p) {
@@ -13,7 +13,7 @@ $.component = (function () {
                     return "';html+=" + p + ";html +='";
                 });
                 functionBody = "var html = '" + functionBody + "';return html;";
-                return new Function("state", "attr", functionBody)(data, attr);
+                return new Function("state", "attr", "slots", functionBody)(data, attr, slots);
             }
         }
     })();
@@ -35,7 +35,24 @@ $.component = (function () {
                                 currentComponent.attr[currentElement.attributes[attrKey].name] = currentElement.attributes[attrKey].value;
                             }
                         }
-                        var innerHTML = template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, key);
+
+                        var slotElements = currentElement.getElementsByTagName("slot");
+                        var slots = [];
+                        for (var n in slotElements) {
+                            if (slotElements[n].nodeType === 1) {
+                                var slot = {};
+                                for (var attrKey in slotElements[n].attributes) {
+                                    if (slotElements[n].attributes[attrKey].nodeType === 2) {
+                                        slot[slotElements[n].attributes[attrKey].name] = slotElements[n].attributes[attrKey].value;
+                                    }
+                                }
+                                slot.template = slotElements[n].innerHTML;
+                                slots.push(slot);
+                            }
+                        }
+                        currentComponent.slots = slots;
+
+                        var innerHTML = template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, currentComponent.slots, key);
                         currentElement.innerHTML = innerHTML;
                         currentComponent.node = currentElement;
                         currentComponent.key = key;
@@ -47,7 +64,7 @@ $.component = (function () {
                             currentComponent.refresh();
                         }
                         currentComponent.refresh = function () {
-                            var innerHTML = template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, key);
+                            var innerHTML = template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, currentComponent.slots, key);
                             currentElement.innerHTML = innerHTML;
                         }
                         currentComponent.controller.bind(currentComponent)();
@@ -221,18 +238,17 @@ $.component(function () {
                             {%if(attr.isindex){%}\
                                 <th width='34px'></th>\
                             {%}%}\
-                            {%var columns = JSON.parse(attr.columns);%}\
-                            {%for(var i in columns){%}\
-                                <th width='{{columns[i].width}}%' class='\
-                                    {%if(columns[i].isSort){%}\
+                            {%for(var i in slots){%}\
+                                <th width='{{slots[i].width}}%' class='\
+                                    {%if(slots[i].isSort){%}\
                                         onlinefs-datagrid-isSort\
                                     {%}%}\
                                 '\
-                                    {%if(columns[i].isSort){%}\
+                                    {%if(slots[i].isSort){%}\
                                         onclick='$.sort({{i}})'\
                                     {%}%}\
                                 >\
-                                    {{columns[i].title}}\
+                                    {{slots[i].title}}\
                                     {%if(state.sortColumn.index == i){%}\
                                         {%if(state.sortColumn.isAsc){%}\
                                             <img src='/common/images/common-sort-asc.png' class='onlinefs-datagrid-sort-img' />\
@@ -306,22 +322,7 @@ $.component(function () {
         state: {
             isShowChoose: false,
             currentField: { name: "" },
-            fields: [
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-                { name: "Word文档" },
-            ]
+            fields: []
         },
         controller: function () {
 
@@ -335,6 +336,8 @@ $.component(function () {
             this.setState({
                 currentField: this.state.fields[index]
             });
+            this[this.attr.choose](this.state.fields[index]);
+            this.showChoose();
         }
     }
 });
@@ -351,16 +354,16 @@ $.component(function () {
         state: {
 
         },
-        vm:{
+        vm: {
 
         },
         controller: function () {
 
         },
-        onInputChanged:function(value){
+        onInputChanged: function (value) {
             this.vm.value = value;
         },
-        search:function(){
+        search: function () {
             this[this.attr.search](this.vm.value);
         }
     }
