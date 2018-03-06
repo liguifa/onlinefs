@@ -1,23 +1,40 @@
-$.component = (function () {
-    /**
-     * 模板编译函数
-     */
-    var template = (function () {
-        return {
-            compile: function (template, data, attr, slots, key) {
-                var functionBody = template;
+$.template = (function () {
+    return {
+        compile: function (template, data, attr, slots, key) {
+            var functionBody = template;
 
-                functionBody = functionBody.replace(/\$/g, key).replace(/'/g, "\"").replace(/{%(.*?)%}/g, function (match, p) {
-                    return "';" + p + "html+='";
-                }).replace(/{{(.*?)}}/g, function (match, p) {
-                    return "';html+=" + p + ";html +='";
-                });
-                functionBody = "var html = '" + functionBody + "';return html;";
-                return new Function("state", "attr", "slots", functionBody)(data, attr, slots);
+            functionBody = functionBody.replace(/\$\$/g, "@@").replace(/\$/g, key).replace(/\@\@/g, "$").replace(/'/g, "\"").replace(/{%(.*?)%}/g, function (match, p) {
+                return "';" + p + "html+='";
+            }).replace(/{{(.*?)}}/g, function (match, p) {
+                return "';html+=" + p + ";html +='";
+            });
+            functionBody = "var html = '" + functionBody + "';return html;";
+            return new Function("state", "attr", "slots", functionBody)(data, attr, slots);
+        },
+        slot: function (template, value) {
+            var functionBody = template;
+
+            functionBody = functionBody.replace(/\$\$/g, "$").replace(/{%(.*?)%}/g, function (match, p) {
+                return "';" + p + "html+='";
+            }).replace(/{{(.*?)}}/g, function (match, p) {
+                return "';html+=" + p + ";html +='";
+            });
+            functionBody = "var html = '" + functionBody + "';return html;";
+            var newFunctionBody = "";
+            for (var i in functionBody) {
+                var charCode = functionBody[i].charCodeAt();
+                if (!(charCode === 10 || charCode === 13)) {
+                    newFunctionBody += functionBody[i];
+                } else {
+                    newFunctionBody += " ";
+                }
             }
+            return new Function("value", newFunctionBody)(value);
         }
-    })();
+    }
+})();
 
+$.component = (function () {
     var uuid = 0;
     $.components = [];
     return function (func) {
@@ -52,7 +69,7 @@ $.component = (function () {
                         }
                         currentComponent.slots = slots;
 
-                        var innerHTML = template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, currentComponent.slots, key);
+                        var innerHTML = $.template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, currentComponent.slots, key);
                         currentElement.innerHTML = innerHTML;
                         currentComponent.node = currentElement;
                         currentComponent.key = key;
@@ -64,7 +81,7 @@ $.component = (function () {
                             currentComponent.refresh();
                         }
                         currentComponent.refresh = function () {
-                            var innerHTML = template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, currentComponent.slots, key);
+                            var innerHTML = $.template.compile(currentComponent.template, currentComponent.state, currentComponent.attr, currentComponent.slots, key);
                             currentElement.innerHTML = innerHTML;
                         }
                         currentComponent.controller.bind(currentComponent)();
@@ -266,8 +283,8 @@ $.component(function () {
                                 {%if(attr.isindex){%}\
                                     <td>{{parseInt(i)+1}}</td>\
                                 {%}%}\
-                                {%for(var j in state.rows[i]){%}\
-                                    <td>{{state.rows[i][j]}}</td>\
+                                {%for(var j in slots){%}\
+                                    <td>{{$$.template.slot(slots[j].template,state.rows[i][slots[j].model])}}</td>\
                                 {%}%}\
                             </tr>\
                         {%}%}\

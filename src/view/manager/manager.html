@@ -6,27 +6,27 @@
     <onlinefs-search id="search" search='fileSearch'></onlinefs-search>
 </div>
 <onlinefs-datagrid id="files" sort="fileSort" isIndex="true">
-    <slot title='文件名' width='32' isSort="true">
+    <slot title='文件名' width='32' isSort="true" model="name">   
         {{value}}
     </slot>
-    <slot title='大小' width='10' isSort="true">
+    <slot title='大小' width='10' isSort="true" model="size">
         {{value}}
     </slot>
-    <slot title='类型' width='10' isSort="true">
+    <slot title='类型' width='10' isSort="true" model="fileType">
         {{value}}
     </slot>
-    <slot title='版本' width='8' isSort="true">
+    <slot title='版本' width='8' isSort="true" model="version">
         {{value}}
     </slot>
-    <slot title='修改者' width='10' isSort="true">
+    <slot title='修改者' width='10' isSort="true" model="modifyBy">
         {{value}}
     </slot>
-    <slot title='修改时间' width='15' isSort="true">
+    <slot title='修改时间' width='15' isSort="true" model="modifyTime">
         {{value}}
     </slot>
-    <slot title='操作' width='15' isSort="false">
+    <slot title='操作' width='15' isSort="false" model="actions">
         {%for(var i in value){%}
-            {%if(value[i].isEnable)%}
+            {%if(value[i].isEnable){%}
                 <img src="/manager/images/manager-{{value[i].type}}.png" />
             {%}%}
         {%}%} 
