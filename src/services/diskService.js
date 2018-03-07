@@ -17,7 +17,7 @@ module.exports = class diskService {
     getSubFoldersById(diskId, sortType, isAsc, searchKey) {
         var sortColumn = this._getSortColumnBySortType(sortType);
         var asc = isAsc === 1 ? "asc" : "desc";
-        return sqlHelper.query(`select name as name,0 as size,'文件夹' as fileType, 0 as version,onlinefs_users.displayName as modifyBy, 
+        return sqlHelper.query(`select onlinefs_folders.id as id, name as name,0 as size,'文件夹' as fileType, 0 as version,onlinefs_users.displayName as modifyBy, 
         onlinefs_folders.modifyTime as modifyTime,2 as type from onlinefs_folders
         join onlinefs_users on onlinefs_folders.modifyBy = onlinefs_users.id
         where diskId = ${diskId} and parentFolderId = 0 and (name like '%${searchKey}%' or '${searchKey}' = '')

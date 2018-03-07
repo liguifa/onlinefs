@@ -1,0 +1,36 @@
+html,body{
+    padding:0px;
+    margin: 0px;
+}
+
+.onlinefs-opentxt{
+    background: #EEEEEE;
+    width: 100%;
+    border-left: solid 5px #3F87A6;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+}
+
+.onlinefs-opentxt-index{
+    width: 50px;
+    color: #999999;
+    font-size: 14px;
+    border-right: 1px solid #999999;
+    flex-grow: 0;
+}
+
+.onlinefs-opentxt-index span{
+    display: block;
+    line-height: 28px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.onlinefs-opentxt-body{
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 28px;
+    padding-left: 10px;
+}

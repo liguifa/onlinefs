@@ -35,3 +35,12 @@ onlinefs-title h1{
     flex-direction: row;
     justify-content: space-between;
 }
+
+.onlinefs-manager-openfile{
+    width: 100%;
+    height: 100%;
+}
+
+#onlinefsopenfile > div > div:last-child{
+    padding:0px;
+}

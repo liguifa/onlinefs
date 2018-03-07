@@ -1,3 +1,3 @@
 module.exports = [
-    { extname: "txt", url: "/getFileContextForTxt" }
+    { extname: "txt", url: "/open/txt/context.html" }
 ]

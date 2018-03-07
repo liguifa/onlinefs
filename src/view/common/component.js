@@ -14,7 +14,7 @@ $.template = (function () {
         slot: function (template, value) {
             var functionBody = template;
 
-            functionBody = functionBody.replace(/\$\$/g, "$").replace(/{%(.*?)%}/g, function (match, p) {
+            functionBody = functionBody.replace(/\$\$/g, "$").replace(/'/g, "\\\'").replace(/{%(.*?)%}/g, function (match, p) {
                 return "';" + p + "html+='";
             }).replace(/{{(.*?)}}/g, function (match, p) {
                 return "';html+=" + p + ";html +='";

@@ -9,5 +9,6 @@ module.exports = [
     { url: /^\/getDisks$/, controller: "diskController", action: "getDisks" },
     { url: /^\/getOtherNavs$/, controller: "commonController", action: "getOtherNavs" },
     { url: /^\/getFolderInfo$/, controller: "folderController", action: "getFolderInfo" },
-    { url: /^\/getFiles$/, controller: "folderController", action: "getFiles" }
+    { url: /^\/getFiles$/, controller: "folderController", action: "getFiles" },
+    { url: /^\/getFileContext$/, controller: "fileController", action: "getFileContext" }
 ]

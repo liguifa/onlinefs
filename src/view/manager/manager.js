@@ -91,4 +91,16 @@
             rows: newRows
         });
     }
+
+    window.openFile = function (url, id) {
+        var dialog = new $.dialog({
+            id: "onlinefsopenfile",
+            title: "打开文件",
+            isFooter: false,
+            innerHTML: "<iframe class='onlinefs-manager-openfile' src='" + url + "'></iframe>",
+            style: "",
+            script: ""
+        });
+        dialog.show();
+    }
 })();

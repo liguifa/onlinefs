@@ -27,7 +27,7 @@
     <slot title='操作' width='15' isSort="false" model="actions">
         {%for(var i in value){%}
             {%if(value[i].isEnable){%}
-                <img src="/manager/images/manager-{{value[i].type}}.png" />
+                <img onclick="openFile('{{value[i].config.url}}',{{value[i].id}})" src="/manager/images/manager-{{value[i].type}}.png" />
             {%}%}
         {%}%} 
     </slot>
