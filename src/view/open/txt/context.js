@@ -22,11 +22,15 @@
     setIndex(lineCount);
 
     function getFileContext(id) {
+        $.component.loading.enable();
         $.http.get("/getFileContext?type=txt&id=" + id, function (result) {
             $.selector(".onlinefs-opentxt-body").innerHTML = result;
             setIndex(0);
             var lineCount = getContextLineCount();
             setIndex(lineCount);
+            $.component.loading.disable();
         }, "json", "html");
     }
+
+    getFileContext($.queryString.id);
 })();

@@ -58,4 +58,10 @@ module.exports = class controller {
             this.response.end();
         });
     }
+
+    content(context) {
+        this.response.set("Content-Type", "text/plain");
+        this.response.send(context);
+        this.response.end();
+    }
 }

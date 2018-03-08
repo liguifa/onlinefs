@@ -1,23 +1,21 @@
 const controller = require("../base/controller");
 const fileService = require("../services/fileService");
-const fs = require("fs");
+const smbHelper = require("../common/smbHepler");
 
 module.exports = class folderController extends controller {
-    constructor(request,response){
-        super(request,response);
+    constructor(request, response) {
+        super(request, response);
     }
 
-    getFileContext(vm){
-        new fileService().getFileById(vm.id).then(file=>{
-            if(vm.type === "txt"){
-                fs.readFile(file.path,{encoding:"utf8"},(err,data)=>{
-                    if(err){
-                        throw err;
-                    } else {
-                        this.view(data);
-                    }
+    getFileContext(vm) {
+        new fileService().getFileById(vm.id).then(file => {
+            if (vm.type === "txt") {
+                smbHelper.readFile(file.name, file.domain, file.username, file.password).then(data => {
+                    this.content(data);
+                }, err => {
+                    throw err;
                 });
             }
-        }); 
+        });
     }
 }
