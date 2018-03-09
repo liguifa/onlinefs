@@ -30,5 +30,8 @@ module.exports = {
                 }
             });
         });
+    },
+    readFileStream:function (filename, domain, username, password) {
+        return fs.createReadStream(filename);
     }
 }

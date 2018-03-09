@@ -64,4 +64,14 @@ module.exports = class controller {
         this.response.send(context);
         this.response.end();
     }
+
+    stream(stream) {
+        stream.on("data", data => {
+            this.response.write(data);
+        });
+        stream.on("close", data => {
+            this.response.write(data);
+            this.response.end();
+        });
+    }
 }
