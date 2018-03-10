@@ -15,4 +15,8 @@ module.exports = class fileSevice {
                 });
         });
     }
+
+    getFilesByFileType(fileType, pageIndex, pageSize, sortType, isAsc) {
+        return sqlHelper.query(`select * from onlinefs_files where fileTypeId = ${fileType} order by ${sortType} ${isAsc ? "asc" : "desc"} limit ${(pageIndex - 1) * pageSize},${pageSize}`);
+    }
 }

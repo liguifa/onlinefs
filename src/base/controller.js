@@ -1,6 +1,7 @@
 const session = require("./session");
 const $ = require("../common/common");
 const fs = require("fs");
+const streamLength = require("stream-length");
 
 module.exports = class controller {
     constructor(request, response) {
@@ -66,12 +67,17 @@ module.exports = class controller {
     }
 
     stream(stream) {
-        stream.on("data", data => {
-            this.response.write(data);
-        });
-        stream.on("close", data => {
-            this.response.write(data);
-            this.response.end();
+        streamLength(stream).then(size => {
+            this.response.set("Content-Type", "application/octet-stream");
+            this.response.set("Content-Length", size);
+            this.response.set("Accept-Ranges", "bytes");
+            this.response.set("Content-Range", `byte 0-${size}/${size}`);
+            stream.on("data", data => {
+                this.response.write(data);
+            });
+            stream.on("end", () => {
+                this.response.end();
+            });
         });
     }
 }

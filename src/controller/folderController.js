@@ -101,7 +101,8 @@ module.exports = class folderController extends controller {
             type: "open",
             isEnable: openConfig != undefined && openConfig != null,
             config: openConfig,
-            id: fileOrFolder.id
+            id: fileOrFolder.id,
+            name:fileOrFolder.name
         });
         return actions;
     }

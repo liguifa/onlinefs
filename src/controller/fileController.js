@@ -20,4 +20,10 @@ module.exports = class folderController extends controller {
             }
         });
     }
+
+    getAudioList(vm) {
+        new fileService().getFilesByFileType(1, vm.pageIndex, vm.pageSize, vm.sortType, vm.isAsc == 1).then(result => {
+            this.json(result);
+        });
+    }
 }

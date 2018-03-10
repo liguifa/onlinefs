@@ -92,12 +92,12 @@
         });
     }
 
-    window.openFile = function (url, id) {
+    window.openFile = function (url, id, name) {
         var dialog = new $.dialog({
             id: "onlinefsopenfile",
             title: "打开文件",
             isFooter: false,
-            innerHTML: "<iframe class='onlinefs-manager-openfile' src='" + url + "?id=" + id + "'></iframe>",
+            innerHTML: $.string.format("<iframe class='onlinefs-manager-openfile' src='{{url}}?id={{id}}&name={{name}}'></iframe>", { url: url, id: id, name: name }),
             style: "",
             script: ""
         });

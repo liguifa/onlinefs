@@ -10,5 +10,6 @@ module.exports = [
     { url: /^\/getOtherNavs$/, controller: "commonController", action: "getOtherNavs" },
     { url: /^\/getFolderInfo$/, controller: "folderController", action: "getFolderInfo" },
     { url: /^\/getFiles$/, controller: "folderController", action: "getFiles" },
-    { url: /^\/getFileContext$/, controller: "fileController", action: "getFileContext" }
+    { url: /^\/getFileContext$/, controller: "fileController", action: "getFileContext" },
+    { url: /^\/getAudioList$/, controller: "fileController", action: "getAudioList" },
 ]

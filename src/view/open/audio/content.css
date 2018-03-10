@@ -1,0 +1,14 @@
+html,body{
+    height: 100%;
+    overflow: hidden;
+}
+
+.aplayer{
+    height: calc(100% -16px - 10px);
+    overflow: hidden;
+}
+
+.aplayer-list{
+    height: calc(100% - 66px - 16px - 10px) !important;
+    overflow-y: auto;
+}
