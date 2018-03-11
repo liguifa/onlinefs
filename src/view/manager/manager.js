@@ -40,6 +40,23 @@
         }
     });
 
+    $.component(function () {
+        return {
+            tagname: "onlinefs-upload",
+            template: "{{state.html}}",
+            state: {
+                html: "",
+            },
+            controller: function () {
+                $.page.load("/uploadFile/upload.html", "", function (html) {
+                    this.setState({
+                        html: html
+                    });
+                }.bind(this));
+            }
+        }
+    })
+
     $.event.register("manager", function (folder) {
         var folderId = folder.id;
         currentType = folder.type;
@@ -93,14 +110,32 @@
     }
 
     window.openFile = function (url, id, name) {
+        url = url.indexOf("?") > 0 ? url + "&" : url + "?";
         var dialog = new $.dialog({
             id: "onlinefsopenfile",
             title: "打开文件",
             isFooter: false,
-            innerHTML: $.string.format("<iframe class='onlinefs-manager-openfile' src='{{url}}?id={{id}}&name={{name}}'></iframe>", { url: url, id: id, name: name }),
+            isMaxButton: true,
+            innerHTML: $.string.format("<iframe class='onlinefs-manager-openfile' src='{{url}}id={{id}}&name={{name}}'></iframe>", { url: url, id: id, name: name }),
             style: "",
             script: ""
         });
         dialog.show();
+    }
+
+    window.upload = function () {
+        var dialog = new $.dialog({
+            id: "onlinefsupload",
+            title: "打开文件",
+            button: "下一步",
+            isFooter: true,
+            innerHTML: "<onlinefs-upload></onlinefs-upload>",
+            style: "",
+            script: ""
+        });
+        dialog.show();
+        for (var i in $.components) {
+            $.component($.components[i]);
+        }
     }
 })();

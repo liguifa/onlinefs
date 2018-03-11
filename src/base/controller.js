@@ -66,9 +66,10 @@ module.exports = class controller {
         this.response.end();
     }
 
-    stream(stream) {
+    stream(stream, contentType) {
+        contentType = contentType || "application/octet-stream";
         streamLength(stream).then(size => {
-            this.response.set("Content-Type", "application/octet-stream");
+            this.response.set("Content-Type", contentType);
             this.response.set("Content-Length", size);
             this.response.set("Accept-Ranges", "bytes");
             this.response.set("Content-Range", `byte 0-${size}/${size}`);

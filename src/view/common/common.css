@@ -14,6 +14,11 @@
     border-radius: 20px;
 }
 
+.clear{
+    clear: both;
+    float:none !important;
+}
+
 onlinefs-dialog > div:first-child{
     width: 500px;
     height: 403px;
@@ -67,6 +72,15 @@ onlinefs-dialog > div:first-child > div:first-child img{
     display: block;
     margin-top: 10px;
     cursor: pointer;
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+onlinefs-dialog > div:first-child > div:first-child img:last-child{
+    width: 12px;
+    height: 12px;
+    margin-top: 14px;
 }
 
 onlinefs-dialog > div:first-child > div:last-child{

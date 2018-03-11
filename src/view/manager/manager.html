@@ -1,12 +1,49 @@
 <onlinefs-title id="title"></onlinefs-title>
 <onlinefs-crumbs id="crumbs"></onlinefs-crumbs>
-<onlinefs-tabs></onlinefs-tabs>
+<onlinefs-tabs>
+    <slot title="文件">
+        <div class="onlinefs-tabs-tab">
+            <ul>
+                <li onclick="upload()">
+                    <img src="/common/images/common-upload.png" />
+                    <span>上传文件</span>
+                </li>
+                <li>
+                    <img src="/common/images/common-add.png" />
+                    <span>新建文件夹</span>
+                </li>
+                <li>
+                    <img src="/common/images/common-copy.png" />
+                    <span>复制文件夹</span>
+                </li>
+                <li>
+                    <img src="/common/images/common-paste.png" />
+                    <span>黏贴</span>
+                </li>
+                <li>
+                    <img src="/common/images/common-delete.png" />
+                    <span>清空文件夹</span>
+                </li>
+            </ul>
+        </div>
+    </slot>
+    <slot title="权限">
+        <div class="onlinefs-tabs-tab">
+            <ul>
+                <li>
+                    <img src="/common/images/common-authority.png" />
+                    <span>修改权限</span>
+                </li>
+            </ul>
+        </div>
+    </slot>
+</onlinefs-tabs>
 <div class="oninefs-filter">
     <onlinefs-droplist id="typeFilter" choose="filterFileType"></onlinefs-droplist>
     <onlinefs-search id="search" search='fileSearch'></onlinefs-search>
 </div>
 <onlinefs-datagrid id="files" sort="fileSort" isIndex="true">
-    <slot title='文件名' width='32' isSort="true" model="name">   
+    <slot title='文件名' width='32' isSort="true" model="name">
         {{value}}
     </slot>
     <slot title='大小' width='10' isSort="true" model="size">
@@ -25,11 +62,9 @@
         {{value}}
     </slot>
     <slot title='操作' width='15' isSort="false" model="actions">
-        {%for(var i in value){%}
-            {%if(value[i].isEnable){%}
-                <img onclick="openFile('{{value[i].config.url}}',{{value[i].id}},'{{value[i].name}}')" src="/manager/images/manager-{{value[i].type}}.png" />
-            {%}%}
-        {%}%} 
+        {%for(var i in value){%} {%if(value[i].isEnable){%}
+        <img onclick="openFile('{{value[i].config.url}}',{{value[i].id}},'{{value[i].name}}')" src="/manager/images/manager-{{value[i].type}}.png"
+        /> {%}%} {%}%}
     </slot>
 </onlinefs-datagrid>
 <link href="/manager/manager.css" rel="stylesheet" />

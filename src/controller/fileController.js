@@ -16,7 +16,7 @@ module.exports = class folderController extends controller {
                     throw err;
                 });
             } else if (vm.type === "stream") {
-                this.stream(smbHelper.readFileStream(file.name, file.domain, file.username, file.password));
+                this.stream(smbHelper.readFileStream(file.name, file.domain, file.username, file.password), vm.contentType);
             }
         });
     }

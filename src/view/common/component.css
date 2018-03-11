@@ -202,3 +202,220 @@ onlinefs-silder-list > ul li.active{
     align-items: center;
     cursor: pointer;
 }
+
+onlinefs-tabs{
+    color: #555555;
+    font-size: 16px;
+}
+
+onlinefs-tabs > div{
+    margin-top: 15px; 
+}
+
+onlinefs-tabs > div > div:first-child ul{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+onlinefs-tabs > div > div:first-child ul li{
+    float: left;
+    width: 100px;
+    height: 32px;
+    text-align:center;
+    line-height: 36px;
+    cursor: pointer;
+}
+
+onlinefs-tabs > div > div:first-child ul li.active{
+    background: #ffffff;
+    cursor: default;
+}
+
+onlinefs-tabs > div > div:first-child ul li:hover{
+    background: #ffffff;
+}
+
+onlinefs-tabs > div > div:last-child{
+    background: #ffffff;
+}
+
+onlinefs-steps,onlinefs-steps > div{
+    width: 100%;
+}
+
+onlinefs-steps > div > div{
+    float: left;
+}
+
+onlinefs-steps > div > div.onlinefs-steps-number{
+    border:#555555 solid 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height:30px;
+    color:#555555;
+}
+
+onlinefs-steps > div > div.onlinefs-steps-line{
+    line-height: 26px;
+    width: calc((100% - 90px - 40px - 6px) / 2);
+    margin: 0px 10px;
+}
+
+onlinefs-steps > div > div.onlinefs-steps-line hr{
+    color:#555555;
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+}
+
+onlinefs-file > div{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 25px;
+}
+
+onlinefs-file > div > input:first-child {
+    flex-grow: 1;
+    border:#D4D4D4 solid 1px;
+    height: 100%;
+    padding: 5px;
+    color:#555555;
+    box-sizing: border-box;
+}
+
+onlinefs-file > div > button{
+    flex-grow: 0;
+    width: 80px;
+    height: 100%;
+    background: #F2F2F2;
+    color:#555555;
+    border:#D4D4D4 solid 1px;
+    border-left: none;
+}
+
+onlinefs-file > div > input:last-child {
+    position: absolute;
+    width: 80px;
+    height: 100%;
+    right:0px;
+    top:0px;
+    opacity: 0;
+}
+
+onlinefs-input > div{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 15px;
+}
+
+onlinefs-input > div > input:first-child {
+    flex-grow: 1;
+    border:#D4D4D4 solid 1px;
+    height: 100%;
+    padding: 5px;
+    color:#555555;
+    box-sizing: border-box;
+    outline: none;
+}
+
+onlinefs-input > div > button{
+    flex-grow: 0;
+    width: 80px;
+    height: 100%;
+    background: #F2F2F2;
+    color:#555555;
+    border:#D4D4D4 solid 1px;
+    border-left: none;
+    outline: none;
+}
+
+onlinefs-textarea > div{
+    width: 100%;
+    height: 150px;
+    border:solid 1px #d4d4d4;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+onlinefs-textarea > div > div:first-child{
+    width: 100%;
+    flex-grow: 0;
+    height: 30px;
+    background: #F2F2F2;
+    color: #555555;
+    border-bottom: 1px #d4d4d4 solid;
+    line-height: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+onlinefs-textarea > div > div:last-child{
+    flex-grow: 1;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    color:#555555;
+    outline: none;
+    background: #ffffff;
+}
+
+onlinefs-list>div{
+    width: 100%;
+    height: 200px;
+    border:solid 1px #d4d4d4;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+onlinefs-list>div>div:first-child{
+    width: 100%;
+    flex-grow: 0;
+    height: 30px;
+    background: #F2F2F2;
+    color: #555555;
+    border-bottom: 1px #d4d4d4 solid;
+    line-height: 30px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+onlinefs-list>div>div:last-child{
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+    color:#555555;
+    outline: none;
+    background: #ffffff;
+    overflow: auto;
+}
+
+onlinefs-list>div>div:last-child ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    width: 100%;
+}
+
+onlinefs-list>div>div:last-child ul li{
+    height: 30px;
+    padding-left: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+onlinefs-list>div>div:last-child ul li:hover{
+    background: #f2f2f2;
+}

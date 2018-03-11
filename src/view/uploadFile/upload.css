@@ -1,0 +1,17 @@
+.onlinefs-upload-panel{
+    padding:0px 20px;
+}
+
+.onlinefs-upload-authority{
+    margin-top: 15px;
+}
+
+.onlinefs-upload-authority>div{
+    float: left;
+    margin-right: 10px;
+    line-height: 24px;
+}
+
+.onlinefs-upload-authority>div label{
+    margin-left: 5px;
+}

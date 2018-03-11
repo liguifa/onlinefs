@@ -79,10 +79,17 @@ $.dialog.prototype = {
         $.component(function () {
             return {
                 tagname: "onlinefs-dialog",
-                template: "<div>\
+                template: "<div\
+                              {%if(state.isMax){%}\
+                                style='width:{{state.size.width}}px;height:{{state.size.height}}px;'\
+                              {%}%}\
+                            >\
                                 <div class='onlinefs-dialog-title'>\
                                     <span>{{state.title}}</span>\
                                     <img src='/common/images/common-close.png' onClick='$.close()' />\
+                                    {%if(state.isMaxButton){%}\
+                                        <img src='/common/images/common-max.png' onClick='$.max()' />\
+                                    {%}%}\
                                 </div>\
                                 <div>\
                                     {{state.innerHTML}}\
@@ -98,7 +105,10 @@ $.dialog.prototype = {
                     title: self.option.title ? self.option.title : "",
                     button: self.option.button ? self.option.button : "",
                     innerHTML: self.option.innerHTML ? self.option.innerHTML : "",
-                    isFooter: self.option.isFooter === undefined || self.option.isFooter ? true : false
+                    isFooter: self.option.isFooter === undefined || self.option.isFooter ? true : false,
+                    isMax: false,
+                    isMaxButton: self.option.isMaxButton || false,
+                    size: {}
                 },
                 vm: {
                     isMove: false,
@@ -151,6 +161,18 @@ $.dialog.prototype = {
                             $.dialog.subscribers[i].func();
                         }
                     }
+                },
+                max: function () {
+                    var height = window.innerHeight;
+                    var width = window.innerWidth;
+                    var isMax = !this.state.isMax;
+                    this.setState({
+                        size: {
+                            height: height,
+                            width: width
+                        },
+                        isMax: isMax
+                    });
                 }
             }
         });
